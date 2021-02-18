@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React, { Component } from 'react'
+import User from "./User";
+export const myContext = React.createContext();
+export default class App extends Component {
+  state={
+    name:"Zia",
+    roll: 109
+  };
+  handleClickContext = ()=>{
+    this.setState({roll: this.state.roll + 1})
+  }
+  render() {
+    const contextValue={
+      data: this.state,
+      handleClick: this.handleClickContext
+    }
+    return (
+      <myContext.Provider value={contextValue}>
+        <User />
+      </myContext.Provider>
+    )
+  }
 }
-
-export default App;
